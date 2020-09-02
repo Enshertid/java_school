@@ -8,4 +8,8 @@ public class ATM {
     public ATM(Bank bank) {
         this.bank = bank;
     }
+
+    public long getBalance(long clientNumber, String accountNumber) throws Exception {
+        return bank.getBalance(clientNumber, accountNumber);
+    }
 }
