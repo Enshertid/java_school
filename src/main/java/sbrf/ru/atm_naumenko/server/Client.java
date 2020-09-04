@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class Client {
     private Map<String, Account> accounts;
     private String secret;
     private long number;
+    private String a;
 
     Client(HashMap<String, Account> accounts){
         this.accounts = accounts;
