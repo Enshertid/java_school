@@ -1,5 +1,8 @@
 package sbrf.ru.atm_naumenko.AccessInstruments;
 
+import com.sun.org.apache.xpath.internal.objects.XNumber;
+import sbrf.ru.atm_naumenko.client.ATM;
+
 import java.util.Scanner;
 
 public class FingerAccess implements AccessInstrument{
@@ -7,9 +10,17 @@ public class FingerAccess implements AccessInstrument{
     private int pin;
     private int countOfAttempts = 0;
 
-    public FingerAccess(String secret, int pin) {
-        this.secret = secret;
-        this.pin = pin;
+    public FingerAccess(ATM currentATM, long numberOfClient) throws Exception{
+        this.secret = getSecretFromBank(currentATM, numberOfClient);
+        this.pin = getPinFromBank(currentATM, numberOfClient);
+    }
+
+    private String getSecretFromBank(ATM currentATM, long numberOfClient) throws Exception {
+        return (currentATM.getSecret(numberOfClient));
+    }
+
+    private int getPinFromBank(ATM currentATM, long numberOfClient) throws Exception{
+        return (currentATM.getPin(numberOfClient));
     }
 
     @Override

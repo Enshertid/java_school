@@ -9,15 +9,24 @@ public class Client {
     private Map<String, Account> accounts;
     private String secret;
     private long number;
-    private String a;
+    private int pin;
 
-    Client(HashMap<String, Account> accounts){
+    Client(HashMap<String, Account> accounts, String secret){
         this.accounts = accounts;
+        this.secret = secret;
     }
 
     public Optional<Account> getAccount(String accountNumber) {
         return Optional.ofNullable(accounts.get(accountNumber));
     }
+
+    public String getSecret() {
+        return secret;
+    }
+    public int getPin() {
+        return pin;
+    }
+
 
     public long getNumber() {return number; }
 }

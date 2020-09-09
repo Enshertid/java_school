@@ -1,17 +1,29 @@
 package sbrf.ru.atm_naumenko.AccessInstruments;
 
+import sbrf.ru.atm_naumenko.client.ATM;
+
 import java.util.Scanner;
 
 public class CardAccess implements AccessInstrument{
     private final String secret;
     private int pin;
 
-    public CardAccess(String secret, int pin) {
-        this.secret = secret;
-        this.pin = pin;
+    public CardAccess(ATM currentATM, long numberOfClient) throws Exception{
+        this.secret = getSecretFromBank(currentATM, numberOfClient);
+        this.pin = getPinFromBank(currentATM, numberOfClient);
     }
 
-    public void setPin(int newPin) { pin = newPin; }
+    private String getSecretFromBank(ATM currentATM, long numberOfClient) throws Exception {
+        return (currentATM.getSecret(numberOfClient));
+    }
+
+    private int getPinFromBank(ATM currentATM, long numberOfClient) throws Exception{
+        return (currentATM.getPin(numberOfClient));
+    }
+
+    public void setPin(int newPin) {
+        pin = newPin;
+    }
 
     public String getSecret() {
         if (requestPin()) {
